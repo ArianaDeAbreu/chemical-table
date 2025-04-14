@@ -1,0 +1,1151 @@
+/* Variáveis CSS para cores e valores comuns */
+:root {
+  /* Cores dos grupos de elementos */
+  --cor-metais-alcalinos: #dbc85d;
+  --cor-semimetais: #66a8d6;
+  --cor-metais-alcalinos-terrosos: #c50837;
+  --cor-metais-transicao: #46439c;
+  --cor-halogenios: #25c0a1;
+  --cor-ametais: #427f93;
+  --cor-gases-nobres: #872fb3;
+  --cor-lantanideos: #d2315f;
+  --cor-actinideos: #8a837f;
+  --cor-outros-metais: #b99147;
+  --cor-extensao: #8598bd;
+
+  /* Cores gerais */
+  --cor-texto: aliceblue;
+  --cor-seta: rgb(44, 41, 41);
+  --cor-svg: white;
+
+  /* Espaçamentos */
+  --espaco-elemento: 0.15vw;
+  --borda-radius: 0.5em;
+  --padding-elemento: 0.4em 0.3em 0.3em;
+
+  /* Tamanhos de fonte */
+  --fonte-titulo: clamp(1.5rem, 4vw, 2.5em);
+  --fonte-simbolo: clamp(0.7rem, 1.2vw, 1.2rem);
+  --fonte-nome: clamp(0.5rem, 0.8vw, 0.8rem);
+  --fonte-numero: clamp(0.5rem, 0.7vw, 0.7rem);
+
+  /* Tempos de animação */
+  --tempo-transicao: 0.2s;
+  --tempo-animacao: 0.3s;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  will-change: transform, opacity;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 1rem;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+}
+
+/* Estilos do alerta de orientação */
+.orientation-alert {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  z-index: 1000;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.orientation-alert.visible {
+  display: flex;
+}
+
+.orientation-alert img {
+  width: 80px;
+  height: 80px;
+  margin: 20px 0;
+  animation: rotate 2s infinite;
+}
+
+.orientation-alert img path,
+.orientation-alert img rect,
+.orientation-alert img line {
+  stroke: var(--cor-svg);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.orientation-alert h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.orientation-alert p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+/* Layout da tabela periódica */
+.periodic-table {
+  display: grid;
+  grid-template-columns: 2% repeat(18, minmax(3.5rem, 1fr)) 3%;
+  grid-template-rows: 2% repeat(10, 1fr);
+  grid-template-areas:
+    ". . . . . . . . . . . . . . . . . . . ."
+    ". e1 . . . . . . . . . . . . . . . . e2 ."
+    ". e3 e4 . . . . . . . . . . e5 e6 e7 e8 e9 e10 ."
+    ". e11 e12 . . . . . . . . . . e13 e14 e15 e16 e17 e18 ."
+    ". e19 e20 e21 e22 e23 e24 e25 e26 e27 e28 e29 e30 e31 e32 e33 e34 e35 e36 ."
+    ". e37 e38 e39 e40 e41 e42 e43 e44 e45 e46 e47 e48 e49 e50 e51 e52 e53 e54 ."
+    ". e55 e56 e5771 e72 e73 e74 e75 e76 e77 e78 e79 e80 e81 e82 e83 e84 e85 e86 ."
+    ". e87 e88 e89103 e104 e105 e106 e107 e108 e109 e110 e111 e112 e113 e114 e115 e116 e117 e118 ."
+    ". . . . . . . . . . . . . . . . . . . ."
+    ". . . . e57 e58 e59 e60 e61 e62 e63 e64 e65 e66 e67 e68 e69 e70 e71 ."
+    ". . . . e89 e90 e91 e92 e93 e94 e95 e96 e97 e98 e99 e100 e101 e102 e103 .";
+  gap: var(--espaco-elemento);
+  height: 95vh;
+  width: 100vw;
+  max-width: 1920px;
+  max-height: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+  aspect-ratio: 1.6;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Estilo do título */
+.title {
+  width: auto;
+  font-size: var(--fonte-titulo);
+  text-transform: capitalize;
+  grid-column: 1/-1;
+  grid-row: 1 / span 1;
+  justify-self: center;
+  padding: 0.3em;
+  white-space: nowrap;
+}
+
+/* Estilo dos elementos com animações */
+.element {
+  color: var(--cor-texto);
+  border-radius: var(--borda-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-elemento);
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  transition: transform var(--tempo-transicao) ease,
+    box-shadow var(--tempo-transicao) ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  transform-origin: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Estilo específico para o elemento de extensão */
+.element.extension {
+  cursor: default;
+  pointer-events: none;
+}
+
+.element::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all var(--tempo-transicao) ease;
+  z-index: 1;
+  opacity: 0;
+}
+
+.element::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all var(--tempo-transicao) ease;
+  z-index: 1;
+}
+
+.element:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.element:hover::before {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.element:hover::after {
+  width: 150%;
+  height: 150%;
+}
+
+.element:active {
+  transform: scale(0.98) translateY(0);
+  transition: all 0.1s ease;
+}
+
+.element span {
+  align-self: flex-end;
+  font-size: var(--fonte-numero);
+  margin-bottom: 0.1em;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--tempo-transicao) ease;
+}
+
+.element:hover span {
+  transform: scale(1.1);
+}
+
+.element h2 {
+  text-align: center;
+  font-size: var(--fonte-simbolo);
+  margin: 0.1em 0;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--tempo-transicao) ease;
+}
+
+.element:hover h2 {
+  transform: scale(1.2);
+}
+
+.element p {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: var(--fonte-nome);
+  margin-top: 0.1em;
+  word-break: break-word;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--tempo-transicao) ease;
+}
+
+.element:hover p {
+  transform: scale(1.1);
+}
+
+/* Cores dos grupos de elementos */
+.alkali-metals {
+  background-color: var(--cor-metais-alcalinos);
+}
+
+.alkali-metals:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.metalloids {
+  background-color: var(--cor-semimetais);
+}
+
+.metalloids:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.alkaline-earth-metals {
+  background-color: var(--cor-metais-alcalinos-terrosos);
+}
+
+.alkaline-earth-metals:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.transition-metals {
+  background-color: var(--cor-metais-transicao);
+}
+
+.transition-metals:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.halogens {
+  background-color: var(--cor-halogenios);
+}
+
+.halogens:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.nonmetals {
+  background-color: var(--cor-ametais);
+}
+
+.nonmetals:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.noble-gases {
+  background-color: var(--cor-gases-nobres);
+}
+
+.noble-gases:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.lanthanides {
+  background-color: var(--cor-lantanideos);
+}
+
+.lanthanides:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.actinides {
+  background-color: var(--cor-actinideos);
+}
+
+.actinides:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}
+
+.other-metals {
+  background-color: var(--cor-outros-metais);
+}
+
+.other-metals:hover {
+  background-color: color-mix(in srgb, var(--cor-outros-metais) 90%, white);
+}
+
+.extension {
+  background-color: var(--cor-extensao);
+}
+
+.extension:hover {
+  background-color: color-mix(in srgb, var(--cor-extensao) 90%, white);
+}
+
+/* Estilo das setas */
+.arrow {
+  border-left: solid var(--cor-seta) 0.2em;
+  border-bottom: solid var(--cor-seta) 0.2em;
+  border-radius: 0 !important;
+  z-index: 3;
+  position: relative;
+}
+
+.arrow-1 {
+  margin-bottom: 0.9em;
+  margin-top: 80%;
+  display: flex;
+  margin-left: 32%;
+  grid-row: 7/11;
+  grid-column: 4 / span 1;
+}
+
+.arrow-2 {
+  margin-bottom: 0.9em;
+  margin-top: 80%;
+  margin-left: 17%;
+  grid-row: 8/12;
+  grid-row: 8/12;
+  grid-column: 4 / span 1;
+}
+
+.arrow-svg-1 {
+  height: 2rem;
+  margin-left: 85%;
+  display: flex;
+  align-self: end;
+  grid-row: 10/11;
+  grid-column: 4 / span 1;
+  z-index: 3;
+  position: relative;
+}
+
+.arrow-svg-2 {
+  height: 2rem;
+  margin-left: 85%;
+  display: flex;
+  align-self: end;
+  grid-row: 11/12;
+  grid-column: 4 / span 1;
+  z-index: 3;
+  position: relative;
+}
+
+/* Posicionamento dos elementos na grade */
+.element[data-number="1"] {
+  grid-area: e1;
+}
+.element[data-number="2"] {
+  grid-area: e2;
+}
+.element[data-number="3"] {
+  grid-area: e3;
+}
+.element[data-number="4"] {
+  grid-area: e4;
+}
+.element[data-number="5"] {
+  grid-area: e5;
+}
+.element[data-number="6"] {
+  grid-area: e6;
+}
+.element[data-number="7"] {
+  grid-area: e7;
+}
+.element[data-number="8"] {
+  grid-area: e8;
+}
+.element[data-number="9"] {
+  grid-area: e9;
+}
+.element[data-number="10"] {
+  grid-area: e10;
+}
+.element[data-number="11"] {
+  grid-area: e11;
+}
+.element[data-number="12"] {
+  grid-area: e12;
+}
+.element[data-number="13"] {
+  grid-area: e13;
+}
+.element[data-number="14"] {
+  grid-area: e14;
+}
+.element[data-number="15"] {
+  grid-area: e15;
+}
+.element[data-number="16"] {
+  grid-area: e16;
+}
+.element[data-number="17"] {
+  grid-area: e17;
+}
+.element[data-number="18"] {
+  grid-area: e18;
+}
+.element[data-number="19"] {
+  grid-area: e19;
+}
+.element[data-number="20"] {
+  grid-area: e20;
+}
+.element[data-number="21"] {
+  grid-area: e21;
+}
+.element[data-number="22"] {
+  grid-area: e22;
+}
+.element[data-number="23"] {
+  grid-area: e23;
+}
+.element[data-number="24"] {
+  grid-area: e24;
+}
+.element[data-number="25"] {
+  grid-area: e25;
+}
+.element[data-number="26"] {
+  grid-area: e26;
+}
+.element[data-number="27"] {
+  grid-area: e27;
+}
+.element[data-number="28"] {
+  grid-area: e28;
+}
+.element[data-number="29"] {
+  grid-area: e29;
+}
+.element[data-number="30"] {
+  grid-area: e30;
+}
+.element[data-number="31"] {
+  grid-area: e31;
+}
+.element[data-number="32"] {
+  grid-area: e32;
+}
+.element[data-number="33"] {
+  grid-area: e33;
+}
+.element[data-number="34"] {
+  grid-area: e34;
+}
+.element[data-number="35"] {
+  grid-area: e35;
+}
+.element[data-number="36"] {
+  grid-area: e36;
+}
+.element[data-number="37"] {
+  grid-area: e37;
+}
+.element[data-number="38"] {
+  grid-area: e38;
+}
+.element[data-number="39"] {
+  grid-area: e39;
+}
+.element[data-number="40"] {
+  grid-area: e40;
+}
+.element[data-number="41"] {
+  grid-area: e41;
+}
+.element[data-number="42"] {
+  grid-area: e42;
+}
+.element[data-number="43"] {
+  grid-area: e43;
+}
+.element[data-number="44"] {
+  grid-area: e44;
+}
+.element[data-number="45"] {
+  grid-area: e45;
+}
+.element[data-number="46"] {
+  grid-area: e46;
+}
+.element[data-number="47"] {
+  grid-area: e47;
+}
+.element[data-number="48"] {
+  grid-area: e48;
+}
+.element[data-number="49"] {
+  grid-area: e49;
+}
+.element[data-number="50"] {
+  grid-area: e50;
+}
+.element[data-number="51"] {
+  grid-area: e51;
+}
+.element[data-number="52"] {
+  grid-area: e52;
+}
+.element[data-number="53"] {
+  grid-area: e53;
+}
+.element[data-number="54"] {
+  grid-area: e54;
+}
+.element[data-number="55"] {
+  grid-area: e55;
+}
+.element[data-number="56"] {
+  grid-area: e56;
+}
+.element[data-number="57-71"] {
+  grid-area: e5771;
+}
+.element[data-number="57"] {
+  grid-area: e57;
+}
+.element[data-number="58"] {
+  grid-area: e58;
+}
+.element[data-number="59"] {
+  grid-area: e59;
+}
+.element[data-number="60"] {
+  grid-area: e60;
+}
+.element[data-number="61"] {
+  grid-area: e61;
+}
+.element[data-number="62"] {
+  grid-area: e62;
+}
+.element[data-number="63"] {
+  grid-area: e63;
+}
+.element[data-number="64"] {
+  grid-area: e64;
+}
+.element[data-number="65"] {
+  grid-area: e65;
+}
+.element[data-number="66"] {
+  grid-area: e66;
+}
+.element[data-number="67"] {
+  grid-area: e67;
+}
+.element[data-number="68"] {
+  grid-area: e68;
+}
+.element[data-number="69"] {
+  grid-area: e69;
+}
+.element[data-number="70"] {
+  grid-area: e70;
+}
+.element[data-number="71"] {
+  grid-area: e71;
+}
+.element[data-number="72"] {
+  grid-area: e72;
+}
+.element[data-number="73"] {
+  grid-area: e73;
+}
+.element[data-number="74"] {
+  grid-area: e74;
+}
+.element[data-number="75"] {
+  grid-area: e75;
+}
+.element[data-number="76"] {
+  grid-area: e76;
+}
+.element[data-number="77"] {
+  grid-area: e77;
+}
+.element[data-number="78"] {
+  grid-area: e78;
+}
+.element[data-number="79"] {
+  grid-area: e79;
+}
+.element[data-number="80"] {
+  grid-area: e80;
+}
+.element[data-number="81"] {
+  grid-area: e81;
+}
+.element[data-number="82"] {
+  grid-area: e82;
+}
+.element[data-number="83"] {
+  grid-area: e83;
+}
+.element[data-number="84"] {
+  grid-area: e84;
+}
+.element[data-number="85"] {
+  grid-area: e85;
+}
+.element[data-number="86"] {
+  grid-area: e86;
+}
+.element[data-number="87"] {
+  grid-area: e87;
+}
+.element[data-number="88"] {
+  grid-area: e88;
+}
+.element[data-number="89-103"] {
+  grid-area: e89103;
+}
+.element[data-number="89"] {
+  grid-area: e89;
+}
+.element[data-number="90"] {
+  grid-area: e90;
+}
+.element[data-number="91"] {
+  grid-area: e91;
+}
+.element[data-number="92"] {
+  grid-area: e92;
+}
+.element[data-number="93"] {
+  grid-area: e93;
+}
+.element[data-number="94"] {
+  grid-area: e94;
+}
+.element[data-number="95"] {
+  grid-area: e95;
+}
+.element[data-number="96"] {
+  grid-area: e96;
+}
+.element[data-number="97"] {
+  grid-area: e97;
+}
+.element[data-number="98"] {
+  grid-area: e98;
+}
+.element[data-number="99"] {
+  grid-area: e99;
+}
+.element[data-number="100"] {
+  grid-area: e100;
+}
+.element[data-number="101"] {
+  grid-area: e101;
+}
+.element[data-number="102"] {
+  grid-area: e102;
+}
+.element[data-number="103"] {
+  grid-area: e103;
+}
+.element[data-number="104"] {
+  grid-area: e104;
+}
+.element[data-number="105"] {
+  grid-area: e105;
+}
+.element[data-number="106"] {
+  grid-area: e106;
+}
+.element[data-number="107"] {
+  grid-area: e107;
+}
+.element[data-number="108"] {
+  grid-area: e108;
+}
+.element[data-number="109"] {
+  grid-area: e109;
+}
+.element[data-number="110"] {
+  grid-area: e110;
+}
+.element[data-number="111"] {
+  grid-area: e111;
+}
+.element[data-number="112"] {
+  grid-area: e112;
+}
+.element[data-number="113"] {
+  grid-area: e113;
+}
+.element[data-number="114"] {
+  grid-area: e114;
+}
+.element[data-number="115"] {
+  grid-area: e115;
+}
+.element[data-number="116"] {
+  grid-area: e116;
+}
+.element[data-number="117"] {
+  grid-area: e117;
+}
+.element[data-number="118"] {
+  grid-area: e118;
+}
+
+/* Removendo estilos do footer */
+footer {
+  display: none;
+}
+
+/* Media Queries para responsividade */
+/* Tablets e dispositivos médios */
+@media screen and (max-width: 1024px) {
+  :root {
+    --padding-elemento: 0.35em 0.25em 0.25em;
+    --fonte-titulo: clamp(1.2rem, 3vw, 2rem);
+    --fonte-simbolo: clamp(0.6rem, 1vw, 1rem);
+    --fonte-nome: clamp(0.4rem, 0.7vw, 0.7rem);
+    --fonte-numero: clamp(0.4rem, 0.6vw, 0.6rem);
+  }
+
+  .periodic-table {
+    grid-template-columns: 2% repeat(18, minmax(2.8rem, 1fr)) 3%;
+    height: auto;
+    width: 100vw;
+    max-width: 100vw;
+    aspect-ratio: 1.6;
+  }
+
+  .arrow-svg-1,
+  .arrow-svg-2 {
+    margin-left: 80%;
+  }
+}
+
+/* Tablets pequenos e celulares grandes */
+@media screen and (max-width: 768px) {
+  :root {
+    --padding-elemento: 0.3em 0.2em 0.2em;
+    --espaco-elemento: 0.1vw;
+  }
+
+  .periodic-table {
+    grid-template-columns: 2% repeat(18, minmax(2.2rem, 1fr)) 3%;
+    height: auto;
+    width: 100vw;
+    max-width: 100vw;
+    aspect-ratio: 1.6;
+  }
+
+  .element:hover {
+    transform: scale(1.03);
+  }
+}
+
+/* Dispositivos móveis - Orientação Paisagem (deitado) */
+@media screen and (max-width: 844px) and (orientation: landscape) {
+  :root {
+    --padding-elemento: 0.15em 0.1em 0.1em;
+    --fonte-titulo: clamp(0.9rem, 2vw, 1.2rem);
+    --fonte-simbolo: clamp(0.55rem, 0.8vw, 0.8rem);
+    --fonte-nome: clamp(0.35rem, 0.5vw, 0.5rem);
+    --fonte-numero: clamp(0.35rem, 0.45vw, 0.45rem);
+    --espaco-elemento: 0.02vw;
+  }
+
+  .periodic-table {
+    grid-template-columns: 2% repeat(18, minmax(1rem, 1fr)) 3%;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    aspect-ratio: 1.6;
+    overflow: hidden;
+    padding-bottom: 0;
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+
+  body {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 0;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  main {
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Dispositivos móveis - Orientação Retrato (em pé) */
+@media screen and (max-width: 390px) and (orientation: portrait) {
+  :root {
+    --padding-elemento: 0.05em 0.02em 0.02em;
+    --fonte-titulo: clamp(0.7rem, 1.5vw, 1rem);
+    --fonte-simbolo: clamp(0.4rem, 0.6vw, 0.6rem);
+    --fonte-nome: clamp(0.2rem, 0.3vw, 0.3rem);
+    --fonte-numero: clamp(0.2rem, 0.25vw, 0.25rem);
+    --espaco-elemento: 0;
+  }
+
+  body {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    overflow: hidden !important;
+  }
+
+  .periodic-table {
+    grid-template-columns: repeat(18, minmax(0.8rem, 1fr)) !important;
+    height: auto !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    aspect-ratio: 1.6 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: scale(0.95) !important;
+    transform-origin: top left !important;
+    gap: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .element {
+    aspect-ratio: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: var(--padding-elemento) !important;
+    margin: 0 !important;
+    border-radius: 0.2em !important;
+  }
+
+  .title {
+    padding: 0.05em !important;
+    margin: 0 !important;
+    font-size: var(--fonte-titulo) !important;
+  }
+
+  .element span {
+    font-size: var(--fonte-numero) !important;
+  }
+
+  .element h2 {
+    font-size: var(--fonte-simbolo) !important;
+  }
+
+  .element p {
+    font-size: var(--fonte-nome) !important;
+  }
+}
+
+/* Dispositivos muito pequenos */
+@media screen and (max-width: 320px) {
+  :root {
+    --padding-elemento: 0.15em 0.1em 0.1em;
+    --espaco-elemento: 0.03vw;
+  }
+
+  .periodic-table {
+    grid-template-columns: 2% repeat(18, minmax(1.2rem, 1fr)) 3%;
+    height: auto;
+    width: 100vw;
+    max-width: 100vw;
+    aspect-ratio: 1.6;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+  }
+
+  body {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 1rem;
+  }
+
+  main {
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+@media (orientation: portrait) {
+  .orientation-alert {
+    display: block;
+  }
+
+  .periodic-table {
+    display: none;
+  }
+}
+
+@media (orientation: landscape) {
+  .orientation-alert {
+    display: none;
+  }
+
+  .periodic-table {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .element:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Estilos do Modal */
+.element-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.element-modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  width: 600px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.element-name {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.element-symbol {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.element-formula {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #444;
+}
+
+.element-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.element-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.element-image.lazy {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.element-image {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Responsividade do Modal */
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .element-name {
+    font-size: 1.5rem;
+  }
+
+  .element-symbol {
+    font-size: 1.2rem;
+  }
+
+  .element-images {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animações */
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-2px) rotate(2deg);
+  }
+  75% {
+    transform: translateY(2px) rotate(-2deg);
+  }
+}
+
+.alkali-metals:hover,
+.metalloids:hover,
+.alkaline-earth-metals:hover,
+.transition-metals:hover,
+.halogens:hover,
+.nonmetals:hover,
+.noble-gases:hover,
+.lanthanides:hover,
+.actinides:hover,
+.other-metals:hover,
+.extension:hover {
+  animation: wave var(--tempo-animacao) infinite;
+}

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tabela Periódica dos Elementos Químicos"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#000000" />
+    <title>Tabela Periódica dos Elementos</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+      .preloader.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .preloader-content {
+        text-align: center;
+        color: white;
+      }
+      .preloader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="preloader-content">
+        <div class="preloader-spinner"></div>
+        <p>Carregando Tabela Periódica...</p>
+      </div>
+    </div>
+
+    <div class="orientation-alert">
+      <p>
+        Por favor, gire seu dispositivo para o modo paisagem para uma melhor
+        experiência.
+      </p>
+      <img src="assets/img/icons/rotate.svg" alt="Ícone de rotação" />
+    </div>
+
+    <!-- Modal de informações do elemento -->
+    <div class="element-modal" id="elementModal">
+      <div class="modal-content">
+        <button class="close-modal">&times;</button>
+        <div class="modal-header">
+          <h2 class="element-name"></h2>
+          <h3 class="element-symbol"></h3>
+        </div>
+        <div class="modal-body">
+          <div class="element-formula"></div>
+          <div class="element-description"></div>
+          <div class="element-images">
+            <img src="" alt="Imagem 1 do elemento" class="element-image" />
+            <img src="" alt="Imagem 2 do elemento" class="element-image" />
+            <img src="" alt="Imagem 3 do elemento" class="element-image" />
+            <img src="" alt="Imagem 4 do elemento" class="element-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="periodic-table">
+        <h1 class="title">Tabela Periódica</h1>
+
+        <!-- Primeiro Período -->
+        <div class="element nonmetals" data-number="1">
+          <span>1</span>
+          <h2>H</h2>
+          <p>Hidrogênio</p>
+        </div>
+        <div class="element noble-gases" data-number="2">
+          <span>2</span>
+          <h2>He</h2>
+          <p>Hélio</p>
+        </div>
+
+        <!-- Segundo Período -->
+        <div class="element alkali-metals" data-number="3">
+          <span>3</span>
+          <h2>Li</h2>
+          <p>Lítio</p>
+        </div>
+        <div class="element alkaline-earth-metals" data-number="4">
+          <span>4</span>
+          <h2>Be</h2>
+          <p>Berílio</p>
+        </div>
+        <div class="element metalloids" data-number="5">
+          <span>5</span>
+          <h2>B</h2>
+          <p>Boro</p>
+        </div>
+        <div class="element nonmetals" data-number="6">
+          <span>6</span>
+          <h2>C</h2>
+          <p>Carbono</p>
+        </div>
+        <div class="element nonmetals" data-number="7">
+          <span>7</span>
+          <h2>N</h2>
+          <p>Nitrogênio</p>
+        </div>
+        <div class="element nonmetals" data-number="8">
+          <span>8</span>
+          <h2>O</h2>
+          <p>Oxigênio</p>
+        </div>
+        <div class="element halogens" data-number="9">
+          <span>9</span>
+          <h2>F</h2>
+          <p>Flúor</p>
+        </div>
+        <div class="element noble-gases" data-number="10">
+          <span>10</span>
+          <h2>Ne</h2>
+          <p>Neônio</p>
+        </div>
+
+        <!-- Terceiro Período -->
+        <div class="element alkali-metals" data-number="11">
+          <span>11</span>
+          <h2>Na</h2>
+          <p>Sódio</p>
+        </div>
+        <div class="element alkaline-earth-metals" data-number="12">
+          <span>12</span>
+          <h2>Mg</h2>
+          <p>Magnésio</p>
+        </div>
+        <div class="element other-metals" data-number="13">
+          <span>13</span>
+          <h2>Al</h2>
+          <p>Alumínio</p>
+        </div>
+        <div class="element metalloids" data-number="14">
+          <span>14</span>
+          <h2>Si</h2>
+          <p>Silício</p>
+        </div>
+        <div class="element nonmetals" data-number="15">
+          <span>15</span>
+          <h2>P</h2>
+          <p>Fósforo</p>
+        </div>
+        <div class="element nonmetals" data-number="16">
+          <span>16</span>
+          <h2>S</h2>
+          <p>Enxofre</p>
+        </div>
+        <div class="element halogens" data-number="17">
+          <span>17</span>
+          <h2>Cl</h2>
+          <p>Cloro</p>
+        </div>
+        <div class="element noble-gases" data-number="18">
+          <span>18</span>
+          <h2>Ar</h2>
+          <p>Argônio</p>
+        </div>
+
+        <!-- Quarto Período -->
+        <div class="element alkali-metals" data-number="19">
+          <span>19</span>
+          <h2>K</h2>
+          <p>Potássio</p>
+        </div>
+        <div class="element alkaline-earth-metals" data-number="20">
+          <span>20</span>
+          <h2>Ca</h2>
+          <p>Cálcio</p>
+        </div>
+        <div class="element transition-metals" data-number="21">
+          <span>21</span>
+          <h2>Sc</h2>
+          <p>Escândio</p>
+        </div>
+        <div class="element transition-metals" data-number="22">
+          <span>22</span>
+          <h2>Ti</h2>
+          <p>Titânio</p>
+        </div>
+        <div class="element transition-metals" data-number="23">
+          <span>23</span>
+          <h2>V</h2>
+          <p>Vanádio</p>
+        </div>
+        <div class="element transition-metals" data-number="24">
+          <span>24</span>
+          <h2>Cr</h2>
+          <p>Cromo</p>
+        </div>
+        <div class="element transition-metals" data-number="25">
+          <span>25</span>
+          <h2>Mn</h2>
+          <p>Manganês</p>
+        </div>
+        <div class="element transition-metals" data-number="26">
+          <span>26</span>
+          <h2>Fe</h2>
+          <p>Ferro</p>
+        </div>
+        <div class="element transition-metals" data-number="27">
+          <span>27</span>
+          <h2>Co</h2>
+          <p>Cobalto</p>
+        </div>
+        <div class="element transition-metals" data-number="28">
+          <span>28</span>
+          <h2>Ni</h2>
+          <p>Níquel</p>
+        </div>
+        <div class="element transition-metals" data-number="29">
+          <span>29</span>
+          <h2>Cu</h2>
+          <p>Cobre</p>
+        </div>
+        <div class="element transition-metals" data-number="30">
+          <span>30</span>
+          <h2>Zn</h2>
+          <p>Zinco</p>
+        </div>
+        <div class="element other-metals" data-number="31">
+          <span>31</span>
+          <h2>Ga</h2>
+          <p>Gálio</p>
+        </div>
+        <div class="element metalloids" data-number="32">
+          <span>32</span>
+          <h2>Ge</h2>
+          <p>Germânio</p>
+        </div>
+        <div class="element metalloids" data-number="33">
+          <span>33</span>
+          <h2>As</h2>
+          <p>Arsênio</p>
+        </div>
+        <div class="element nonmetals" data-number="34">
+          <span>34</span>
+          <h2>Se</h2>
+          <p>Selênio</p>
+        </div>
+        <div class="element halogens" data-number="35">
+          <span>35</span>
+          <h2>Br</h2>
+          <p>Bromo</p>
+        </div>
+        <div class="element noble-gases" data-number="36">
+          <span>36</span>
+          <h2>Kr</h2>
+          <p>Criptônio</p>
+        </div>
+
+        <!-- Quinto Período -->
+        <div class="element alkali-metals" data-number="37">
+          <span>37</span>
+          <h2>Rb</h2>
+          <p>Rubídio</p>
+        </div>
+        <div class="element alkaline-earth-metals" data-number="38">
+          <span>38</span>
+          <h2>Sr</h2>
+          <p>Estrôncio</p>
+        </div>
+        <div class="element transition-metals" data-number="39">
+          <span>39</span>
+          <h2>Y</h2>
+          <p>Ítrio</p>
+        </div>
+        <div class="element transition-metals" data-number="40">
+          <span>40</span>
+          <h2>Zr</h2>
+          <p>Zircônio</p>
+        </div>
+        <div class="element transition-metals" data-number="41">
+          <span>41</span>
+          <h2>Nb</h2>
+          <p>Nióbio</p>
+        </div>
+        <div class="element transition-metals" data-number="42">
+          <span>42</span>
+          <h2>Mo</h2>
+          <p>Molibdênio</p>
+        </div>
+        <div class="element transition-metals" data-number="43">
+          <span>43</span>
+          <h2>Tc</h2>
+          <p>Tecnécio</p>
+        </div>
+        <div class="element transition-metals" data-number="44">
+          <span>44</span>
+          <h2>Ru</h2>
+          <p>Rutênio</p>
+        </div>
+        <div class="element transition-metals" data-number="45">
+          <span>45</span>
+          <h2>Rh</h2>
+          <p>Ródio</p>
+        </div>
+        <div class="element transition-metals" data-number="46">
+          <span>46</span>
+          <h2>Pd</h2>
+          <p>Paládio</p>
+        </div>
+        <div class="element transition-metals" data-number="47">
+          <span>47</span>
+          <h2>Ag</h2>
+          <p>Prata</p>
+        </div>
+        <div class="element transition-metals" data-number="48">
+          <span>48</span>
+          <h2>Cd</h2>
+          <p>Cádmio</p>
+        </div>
+        <div class="element other-metals" data-number="49">
+          <span>49</span>
+          <h2>In</h2>
+          <p>Índio</p>
+        </div>
+        <div class="element other-metals" data-number="50">
+          <span>50</span>
+          <h2>Sn</h2>
+          <p>Estanho</p>
+        </div>
+        <div class="element metalloids" data-number="51">
+          <span>51</span>
+          <h2>Sb</h2>
+          <p>Antimônio</p>
+        </div>
+        <div class="element metalloids" data-number="52">
+          <span>52</span>
+          <h2>Te</h2>
+          <p>Telúrio</p>
+        </div>
+        <div class="element halogens" data-number="53">
+          <span>53</span>
+          <h2>I</h2>
+          <p>Iodo</p>
+        </div>
+        <div class="element noble-gases" data-number="54">
+          <span>54</span>
+          <h2>Xe</h2>
+          <p>Xenônio</p>
+        </div>
+
+        <!-- Sexto Período -->
+        <div class="element alkali-metals" data-number="55">
+          <span>55</span>
+          <h2>Cs</h2>
+          <p>Césio</p>
+        </div>
+        <div class="element alkaline-earth-metals" data-number="56">
+          <span>56</span>
+          <h2>Ba</h2>
+          <p>Bário</p>
+        </div>
+
+        <!-- Elementos 57-71 (Lantanídeos) -->
+        <div class="element extension" data-number="57-71">
+          <span>57-71</span>
+          <h2>...</h2>
+        </div>
+
+        <div class="arrow arrow-1"></div>
+        <object
+          class="arrow-svg-1"
+          type="image/svg+xml"
+          data="assets/img/icons/seta.svg"
+        ></object>
+
+        <div class="element lanthanides" data-number="57">
+          <span>57</span>
+          <h2>La</h2>
+          <p>Lantânio</p>
+        </div>
+        <div class="element lanthanides" data-number="58">
+          <span>58</span>
+          <h2>Ce</h2>
+          <p>Cério</p>
+        </div>
+        <div class="element lanthanides" data-number="59">
+          <span>59</span>
+          <h2>Pr</h2>
+          <p>Praseodímio</p>
+        </div>
+        <div class="element lanthanides" data-number="60">
+          <span>60</span>
+          <h2>Nd</h2>
+          <p>Neodímio</p>
+        </div>
+        <div class="element lanthanides" data-number="61">
+          <span>61</span>
+          <h2>Pm</h2>
+          <p>Promécio</p>
+        </div>
+        <div class="element lanthanides" data-number="62">
+          <span>62</span>
+          <h2>Sm</h2>
+          <p>Samário</p>
+        </div>
+        <div class="element lanthanides" data-number="63">
+          <span>63</span>
+          <h2>Eu</h2>
+          <p>Európio</p>
+        </div>
+        <div class="element lanthanides" data-number="64">
+          <span>64</span>
+          <h2>Gd</h2>
+          <p>Gadolínio</p>
+        </div>
+        <div class="element lanthanides" data-number="65">
+          <span>65</span>
+          <h2>Tb</h2>
+          <p>Térbio</p>
+        </div>
+        <div class="element lanthanides" data-number="66">
+          <span>66</span>
+          <h2>Dy</h2>
+          <p>Disprósio</p>
+        </div>
+        <div class="element lanthanides" data-number="67">
+          <span>67</span>
+          <h2>Ho</h2>
+          <p>Hólmio</p>
+        </div>
+        <div class="element lanthanides" data-number="68">
+          <span>68</span>
+          <h2>Er</h2>
+          <p>Érbio</p>
+        </div>
+        <div class="element lanthanides" data-number="69">
+          <span>69</span>
+          <h2>Tm</h2>
+          <p>Túlio</p>
+        </div>
+        <div class="element lanthanides" data-number="70">
+          <span>70</span>
+          <h2>Yb</h2>
+          <p>Itérbio</p>
+        </div>
+        <div class="element lanthanides" data-number="71">
+          <span>71</span>
+          <h2>Lu</h2>
+          <p>Lutécio</p>
+        </div>
+
+        <div class="element transition-metals" data-number="72">
+          <span>72</span>
+          <h2>Hf</h2>
+          <p>Háfnio</p>
+        </div>
+        <div class="element transition-metals" data-number="73">
+          <span>73</span>
+          <h2>Ta</h2>
+          <p>Tântalo</p>
+        </div>
+        <div class="element transition-metals" data-number="74">
+          <span>74</span>
+          <h2>W</h2>
+          <p>Tungstênio</p>
+        </div>
+        <div class="element transition-metals" data-number="75">
+          <span>75</span>
+          <h2>Re</h2>
+          <p>Rênio</p>
+        </div>
+        <div class="element transition-metals" data-number="76">
+          <span>76</span>
+          <h2>Os</h2>
+          <p>Ósmio</p>
+        </div>
+        <div class="element transition-metals" data-number="77">
+          <span>77</span>
+          <h2>Ir</h2>
+          <p>Irídio</p>
+        </div>
+        <div class="element transition-metals" data-number="78">
+          <span>78</span>
+          <h2>Pt</h2>
+          <p>Platina</p>
+        </div>
+        <div class="element transition-metals" data-number="79">
+          <span>79</span>
+          <h2>Au</h2>
+          <p>Ouro</p>
+        </div>
+        <div class="element transition-metals" data-number="80">
+          <span>80</span>
+          <h2>Hg</h2>
+          <p>Mercúrio</p>
+        </div>
+        <div class="element other-metals" data-number="81">
+          <span>81</span>
+          <h2>Tl</h2>
+          <p>Tálio</p>
+        </div>
+        <div class="element other-metals" data-number="82">
+          <span>82</span>
+          <h2>Pb</h2>
+          <p>Chumbo</p>
+        </div>
+        <div class="element other-metals" data-number="83">
+          <span>83</span>
+          <h2>Bi</h2>
+          <p>Bismuto</p>
+        </div>
+        <div class="element metalloids" data-number="84">
+          <span>84</span>
+          <h2>Po</h2>
+          <p>Polônio</p>
+        </div>
+        <div class="element halogens" data-number="85">
+          <span>85</span>
+          <h2>At</h2>
+          <p>Ástato</p>
+        </div>
+        <div class="element noble-gases" data-number="86">
+          <span>86</span>
+          <h2>Rn</h2>
+          <p>Radônio</p>
+        </div>
+
+        <!-- Sétimo Período -->
+        <div class="element alkali-metals" data-number="87">
+          <span>87</span>
+          <h2>Fr</h2>
+          <p>Frâncio</p>
+        </div>
+        <div class="element alkaline-earth-metals" data-number="88">
+          <span>88</span>
+          <h2>Ra</h2>
+          <p>Rádio</p>
+        </div>
+
+        <!-- Elementos 89-103 (Actinídeos) -->
+        <div class="element extension" data-number="89-103">
+          <span>89-103</span>
+          <h2>...</h2>
+        </div>
+
+        <div class="arrow arrow-2"></div>
+        <object
+          class="arrow-svg-2"
+          type="image/svg+xml"
+          data="assets/img/icons/seta.svg"
+        ></object>
+
+        <div class="element actinides" data-number="89">
+          <span>89</span>
+          <h2>Ac</h2>
+          <p>Actínio</p>
+        </div>
+        <div class="element actinides" data-number="90">
+          <span>90</span>
+          <h2>Th</h2>
+          <p>Tório</p>
+        </div>
+        <div class="element actinides" data-number="91">
+          <span>91</span>
+          <h2>Pa</h2>
+          <p>Protactínio</p>
+        </div>
+        <div class="element actinides" data-number="92">
+          <span>92</span>
+          <h2>U</h2>
+          <p>Urânio</p>
+        </div>
+        <div class="element actinides" data-number="93">
+          <span>93</span>
+          <h2>Np</h2>
+          <p>Netúnio</p>
+        </div>
+        <div class="element actinides" data-number="94">
+          <span>94</span>
+          <h2>Pu</h2>
+          <p>Plutônio</p>
+        </div>
+        <div class="element actinides" data-number="95">
+          <span>95</span>
+          <h2>Am</h2>
+          <p>Amerício</p>
+        </div>
+        <div class="element actinides" data-number="96">
+          <span>96</span>
+          <h2>Cm</h2>
+          <p>Cúrio</p>
+        </div>
+        <div class="element actinides" data-number="97">
+          <span>97</span>
+          <h2>Bk</h2>
+          <p>Berquélio</p>
+        </div>
+        <div class="element actinides" data-number="98">
+          <span>98</span>
+          <h2>Cf</h2>
+          <p>Califórnio</p>
+        </div>
+        <div class="element actinides" data-number="99">
+          <span>99</span>
+          <h2>Es</h2>
+          <p>Einstênio</p>
+        </div>
+        <div class="element actinides" data-number="100">
+          <span>100</span>
+          <h2>Fm</h2>
+          <p>Férmio</p>
+        </div>
+        <div class="element actinides" data-number="101">
+          <span>101</span>
+          <h2>Md</h2>
+          <p>Mendelévio</p>
+        </div>
+        <div class="element actinides" data-number="102">
+          <span>102</span>
+          <h2>No</h2>
+          <p>Nobélio</p>
+        </div>
+        <div class="element actinides" data-number="103">
+          <span>103</span>
+          <h2>Lr</h2>
+          <p>Laurêncio</p>
+        </div>
+
+        <div class="element transition-metals" data-number="104">
+          <span>104</span>
+          <h2>Rf</h2>
+          <p>Rutherfórdio</p>
+        </div>
+        <div class="element transition-metals" data-number="105">
+          <span>105</span>
+          <h2>Db</h2>
+          <p>Dúbnio</p>
+        </div>
+        <div class="element transition-metals" data-number="106">
+          <span>106</span>
+          <h2>Sg</h2>
+          <p>Seabórgio</p>
+        </div>
+        <div class="element transition-metals" data-number="107">
+          <span>107</span>
+          <h2>Bh</h2>
+          <p>Bóhrio</p>
+        </div>
+        <div class="element transition-metals" data-number="108">
+          <span>108</span>
+          <h2>Hs</h2>
+          <p>Hássio</p>
+        </div>
+        <div class="element transition-metals" data-number="109">
+          <span>109</span>
+          <h2>Mt</h2>
+          <p>Meitnério</p>
+        </div>
+        <div class="element transition-metals" data-number="110">
+          <span>110</span>
+          <h2>Ds</h2>
+          <p>Darmstádio</p>
+        </div>
+        <div class="element transition-metals" data-number="111">
+          <span>111</span>
+          <h2>Rg</h2>
+          <p>Roentgênio</p>
+        </div>
+        <div class="element transition-metals" data-number="112">
+          <span>112</span>
+          <h2>Cn</h2>
+          <p>Copernício</p>
+        </div>
+        <div class="element other-metals" data-number="113">
+          <span>113</span>
+          <h2>Nh</h2>
+          <p>Nihônio</p>
+        </div>
+        <div class="element other-metals" data-number="114">
+          <span>114</span>
+          <h2>Fl</h2>
+          <p>Fleróvio</p>
+        </div>
+        <div class="element other-metals" data-number="115">
+          <span>115</span>
+          <h2>Mc</h2>
+          <p>Moscóvio</p>
+        </div>
+        <div class="element other-metals" data-number="116">
+          <span>116</span>
+          <h2>Lv</h2>
+          <p>Livermório</p>
+        </div>
+        <div class="element halogens" data-number="117">
+          <span>117</span>
+          <h2>Ts</h2>
+          <p>Tenessino</p>
+        </div>
+        <div class="element noble-gases" data-number="118">
+          <span>118</span>
+          <h2>Og</h2>
+          <p>Oganessônio</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+      window.addEventListener("load", function () {
+        const preloader = document.querySelector(".preloader");
+        preloader.classList.add("fade-out");
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 300);
+      });
+    </script>
+    <script src="assets/js/element-info.js" defer></script>
+    <script src="assets/js/orientation.js" defer></script>
+  </body>
+</html>
