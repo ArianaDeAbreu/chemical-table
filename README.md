@@ -97,3 +97,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 📧 Contato
 
 Link do Projeto: [https://github.com/ArianaDeAbreu/chemical-table](https://github.com/ArianaDeAbreu/chemical-table)
+
+(Este projeto foi iniciado durante o primeiro ano da minha graduação em Sistemas de Informação na UFF, em 2019.
+Foi postado aqui no GitHub e atualizado em 2025 como parte do meu processo contínuo de aprendizado e evolução na área.)
